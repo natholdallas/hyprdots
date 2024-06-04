@@ -25,10 +25,9 @@ Affinity hyprland config for gnome
 - kitty
 - cliphist
 - wl-clipboard
-- xorg-xwayland
 
 ```shell
-paru -S hyprland hyprlock hyprshot hyprpicker hyprcursor hyprpaper waybar brightnessctl playerctl mako wofi kitty cliphist wl-clipboard xorg-xwayland
+paru -S hyprland hyprlock hyprshot hyprpicker hyprcursor hyprpaper waybar brightnessctl playerctl mako wofi kitty cliphist wl-clipboard
 ```
 
 ## Use fonts

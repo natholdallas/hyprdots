@@ -11,7 +11,7 @@ on-button-right=dismiss-all
 on-touch=dismiss
 
 # STYLE OPTIONS
-font=Mononoki Nerd Font 12
+font=Monaco Nerd Font 14
 width=400
 height=150
 margin=10
@@ -29,7 +29,7 @@ default-timeout=2000
 ignore-timeout=0
 max-visible=5
 layer=top
-anchor=top-center
+anchor=top-right
 
 background-color=#1e1e2e
 text-color=#d9e0ee

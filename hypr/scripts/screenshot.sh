@@ -7,13 +7,11 @@ if [[ ! -d "$dir" ]]; then
 fi
 
 if [[ "$1" == "-region" ]]; then
-	hyprshot -m region -c -o $dir -f $file
+	hyprshot -m region -m active -o $dir -f $file
 elif [[ "$1" == "-window" ]]; then
-	hyprshot -m window -c -o $dir -f $file
+	hyprshot -m window -m active -o $dir -f $file
 elif [[ "$1" == "-monitor" ]]; then
-	hyprshot -m output -c -o $dir -f $file
+	hyprshot -m output -m active -o $dir -f $file
 elif [[ "$1" == "-monitorclipboard" ]]; then
-	hyprshot -m output -c --clipboard-only
+	hyprshot -m output -m active --clipboard-only
 fi
-
-exit 0
