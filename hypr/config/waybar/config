@@ -2,27 +2,26 @@
     "layer": "top",
     "modules-left": [
         "cpu",
-        "memory",
-        "custom/media"
+        "memory"
     ],
     "cpu": {
         "interval": 15,
-        "format": " {}%",
+        "format": "  {}%",
         "max-length": 10
     },
     "memory": {
         "interval": 30,
-        "format": " {}%",
+        "format": "  {}%",
         "max-length": 10
-    },
-    "tray": {
-        "icon-size": 21,
-        "spacing": 16
     },
     "modules-center": [
         "hyprland/workspaces",
         "tray"
     ],
+    "tray": {
+        "icon-size": 21,
+        "spacing": 16
+    },
     "modules-right": [
         "backlight",
         "pulseaudio",
@@ -46,19 +45,37 @@
         "on-click": "pactl set-sink-mute @DEFAULT_SINK@ toggle",
         "format-icons": {
             "default": [
-                "",
-                "",
-                ""
+                "󰕿",
+                "󰖀",
+                "󰕾"
             ]
         }
     },
     "network": {
-        "tooltip": false,
+        "tooltip": true,
         "format-wifi": "  {essid}",
-        "format-ethernet": ""
+        "format-disconnected": "󰤭 ",
+        "format-icons": [
+            "󰤯 ",
+            "󰤟 ",
+            "󰤢 ",
+            "󰤥 ",
+            "󰤨 "
+        ],
+        "tooltip-format-wifi": "{essid}",
+        "tooltip-format-disconnected": "Disconnected"
     },
     "clock": {
-        "format": " {}"
+        "tooltip-format": "{calendar}",
+        "format-alt": "  {:%a, %d %b %Y}",
+        "format": "  {:%H:%M}",
+        "actions": {
+            "on-click-right": "none",
+            "on-click-forward": "tz_up",
+            "on-click-backward": "tz_down",
+            "on-scroll-up": "shift_up",
+            "on-scroll-down": "shift_down"
+        }
     },
     "battery": {
         "states": {

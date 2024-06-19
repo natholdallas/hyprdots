@@ -23,11 +23,13 @@ Affinity hyprland config for gnome
 - mako
 - wofi
 - kitty
+- wezterm
 - cliphist
 - wl-clipboard
+- yazi
 
 ```shell
-paru -S hyprland hyprlock hyprshot hyprpicker hyprcursor hyprpaper waybar brightnessctl playerctl mako wofi kitty cliphist wl-clipboard
+paru -S hyprland hyprlock hyprshot hyprpicker hyprcursor hyprpaper waybar brightnessctl playerctl mako wofi kitty cliphist wl-clipboard yazi wezterm
 ```
 
 ## Use fonts
