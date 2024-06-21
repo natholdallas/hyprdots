@@ -4,8 +4,10 @@
   font-size: 14px;
 }
 
-window#waybar {
-  background: transparent;
+#waybar {
+  background: rgba(20, 20, 20, 20);
+  min-height: 20px;
+  border-radius: 0px;
 }
 
 /* Module Left */
@@ -13,37 +15,26 @@ window#waybar {
 #cpu {
   margin: 6px 0 6px 6px;
   padding: 0 10px;
-  color: #96cdfb;
-  background: #161320;
 }
 
 #memory {
   margin: 6px 0 6px 6px;
   padding: 0 10px;
-  color: #ddb6f2;
-  background: #161320;
 }
 
 /* Module Center */
 
 #workspaces {
   margin: 6px 0;
-  background: #161320;
-}
-
-#workspaces button {
-  color: #b5e8e0;
-}
-
-#workspaces button:hover {
-  color: #e8a2af;
+  color: #eeeeee;
+  background: rgba(50, 50, 50, 80);
 }
 
 #tray {
   margin: 6px 0 6px 6px;
   padding: 0 10px;
-  color: #b5e8e0;
-  background: #161320;
+  color: #eeeeee;
+  background: rgba(50, 50, 50, 80);
 }
 
 /* Module Right */
@@ -51,41 +42,29 @@ window#waybar {
 #backlight {
   margin: 6px 6px 6px 0;
   padding: 0 10px;
-  color: #f8bd96;
-  background: #161320;
 }
 
 #pulseaudio {
   margin: 6px 6px 6px 0;
   padding: 0 10px;
-  color: #fae3b0;
-  background: #161320;
 }
 
 #network {
   margin: 6px 6px 6px 0;
   padding: 0 10px;
-  color: #bd93f9;
-  background: #161320;
 }
 
 #clock {
   margin: 6px 6px 6px 0;
   padding: 0 10px;
-  color: #abe9b3;
-  background: #161320;
 }
 
 #custom-power {
   margin: 6px 6px 6px 0;
   padding: 0 10px;
-  color: #f28fad;
-  background: #161320;
 }
 
 #battery {
   margin: 6px 6px 6px 0;
   padding: 0 10px;
-  color: #b5e8e0;
-  background: #161320;
 }
