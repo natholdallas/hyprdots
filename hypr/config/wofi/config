@@ -8,8 +8,8 @@ layer=top
 term=wezterm
 
 ## Geometry
-width=640px
-height=480px
+width=600px
+height=400px
 location=0
 orientation=vertical
 halign=fill

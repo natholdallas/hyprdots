@@ -4,6 +4,17 @@
         "cpu",
         "memory"
     ],
+    "modules-center": [
+        "hyprland/workspaces",
+        "tray"
+    ],
+    "modules-right": [
+        "backlight",
+        "pulseaudio",
+        "network",
+        "clock",
+        "battery"
+    ],
     "cpu": {
         "interval": 15,
         "format": "  {}%",
@@ -14,22 +25,10 @@
         "format": "  {}%",
         "max-length": 10
     },
-    "modules-center": [
-        "hyprland/workspaces",
-        "tray"
-    ],
     "tray": {
         "icon-size": 21,
         "spacing": 16
     },
-    "modules-right": [
-        "backlight",
-        "pulseaudio",
-        "network",
-        "clock",
-        "battery",
-        "custom/power"
-    ],
     "backlight": {
         "tooltip": false,
         "format": " {}%",

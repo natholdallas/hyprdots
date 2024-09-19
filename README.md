@@ -27,9 +27,10 @@ Affinity hyprland config for gnome
 - cliphist
 - wl-clipboard
 - yazi
+- htop
 
 ```shell
-paru -S hyprland hyprlock hyprshot hyprpicker hyprcursor hyprpaper waybar brightnessctl playerctl mako wofi kitty cliphist wl-clipboard yazi wezterm
+paru -S hyprland hyprlock hyprshot hyprpicker hyprcursor hyprpaper waybar brightnessctl playerctl mako wofi kitty cliphist wl-clipboard yazi wezterm htop
 ```
 
 ## Use fonts
