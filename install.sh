@@ -1,28 +1,21 @@
 config=~/.config
 share=~/.local/share
-nconfig=$config/hyprdots-nath
-nshare=$share/hyprdots-nath
+backup=$share/hyprdots-backup
 
 # Make dirs
 
-if [[ ! -d $nconfig ]]; then
-  mkdir $nconfig
-fi
-
-if [[ ! -d $nshare ]]; then
-  mkdir $nshare
-elif [[ ! -z "$(ls -A $nshare)" ]]; then
-  rm -r $nshare/*
+if [[ ! -d $backup ]]; then
+  mkdir $backup
+elif [[ ! -z "$(ls -A $backup)" ]]; then
+  rm -r $backup/*
 fi
 
 # Backup
 
-if [[ -d "$config/hypr" ]]; then
-  /bin/mv -f "$config/hypr" $nshare
-fi
+/bin/mv -f "$config/hypr" $backup
 
 # Copy
 
-/bin/cp -rf hypr $config
+/bin/cp -rf hypr/ $config
 
-echo "Move origin configuration to $nshare"
+echo "Move origin configuration to $backup"
