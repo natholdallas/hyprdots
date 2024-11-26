@@ -2,14 +2,6 @@ get_brightness() {
 	brightnessctl -m | grep -o '[0-9]\+%' | head -c-2
 }
 
-send_notification() {
-	brightness=$(brightnessctl info | grep -oP "(?<=\()\d+(?=%)" | cat)
-	brightinfo=$(brightnessctl info | awk -F "'" '/Device/ {print $2}')
-	angle="$((($brightness + 2) / 5) * 5))"
-	bar=$(seq -s "." $(($brightness / 15)) | sed 's/[0-9]//g')
-	# notify-send -a "t2" -r 91190 -t 800 -i "${angle}" "${brightness}${bar}" "${brightinfo}"
-}
-
 case $1 in
 i)
 	if [[ $(get_brightness) -lt 10 ]]; then
@@ -19,7 +11,6 @@ i)
 		# increase the backlight by 5% otherwise
 		brightnessctl set +5%
 	fi
-	send_notification
 	;;
 d)
 	if [[ $(get_brightness) -le 1 ]]; then
@@ -32,6 +23,5 @@ d)
 		# decrease the backlight by 5% otherwise
 		brightnessctl set 5%-
 	fi
-	send_notification
 	;;
 esac

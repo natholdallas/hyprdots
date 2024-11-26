@@ -1,5 +1,3 @@
-## Wofi Config
-
 ## General
 show=drun
 prompt=
@@ -19,7 +17,7 @@ dynamic_lines=false
 ## Images
 allow_markup=true
 allow_images=true
-image_size=40
+image_size=32
 
 ## Search
 exec_search=false

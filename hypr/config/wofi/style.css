@@ -4,9 +4,7 @@
 }
 
 #window {
-  background-color: --wofi-color0;
-  color: --wofi-color2;
-  border: 2px solid --wofi-color1;
+  background-color: #212121;
   border-radius: 0px;
 }
 
@@ -15,8 +13,8 @@
 }
 
 #input {
-  background-color: --wofi-color1;
-  border: 0px solid --wofi-color3;
+  background-color: #212121;
+  border: 0.5px solid;
   padding: 8px 12px;
 }
 
@@ -29,20 +27,17 @@
 }
 
 #text {
-  color: --wofi-color2;
-}
-
-#text:selected {
-  color: --wofi-color0;
+  color: #eeeeee;
 }
 
 #entry {
   padding: 6px;
+  padding-left: 12px;
 }
 
 #entry:selected {
-  background-color: --wofi-color3;
-  color: --wofi-color0;
+  background-color: #424242;
+  color: #1e1e2e;
 }
 
 #input,
