@@ -1,6 +1,6 @@
 # hyprdots-gnome
 
-Affinity hyprland config for gnome
+Affinity hyprland config for kde-plasma
 
 ## Shell
 
@@ -17,6 +17,8 @@ Affinity hyprland config for gnome
 - hyprpicker
 - hyprcursor
 - hyprpaper
+- hyprpolkitagent
+- hyprsunset
 - waybar
 - brightnessctl
 - playerctl
@@ -28,10 +30,6 @@ Affinity hyprland config for gnome
 - wl-clipboard
 - yazi
 - htop
-
-```shell
-paru -S hyprland hyprlock hyprshot hyprpicker hyprcursor hyprpaper waybar brightnessctl playerctl mako wofi kitty cliphist wl-clipboard yazi wezterm htop
-```
 
 ## Use fonts
 

@@ -1,25 +1,10 @@
 * {
-  border-radius: 8px;
   font-family: "Monaco Nerd Font";
-  font-size: 16px;
+  font-size: 14px;
 }
 
 #waybar {
   background: rgba(20, 20, 20, 20);
-  min-height: 20px;
-  border-radius: 0px;
-}
-
-/* Module Left */
-
-#cpu {
-  margin: 6px 0 6px 6px;
-  padding: 0 10px;
-}
-
-#memory {
-  margin: 6px 0 6px 6px;
-  padding: 0 10px;
 }
 
 /* Module Center */
@@ -28,6 +13,7 @@
   margin: 6px 0;
   color: #eeeeee;
   background: rgba(50, 50, 50, 80);
+  border-radius: 4px;
 }
 
 #tray {
@@ -35,6 +21,7 @@
   padding: 0 10px;
   color: #eeeeee;
   background: rgba(50, 50, 50, 80);
+  border-radius: 4px;
 }
 
 /* Module Right */
