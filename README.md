@@ -1,4 +1,4 @@
-# hyprdots-gnome
+# hyprdots
 
 Affinity hyprland config for kde-plasma
 
