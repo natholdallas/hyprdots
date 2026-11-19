@@ -1,57 +1,141 @@
+/* Waybar — zinc capsules.
+ *
+ * Waybar renders through GTK3 CSS, which has no `transition` support. Hover and
+ * state changes are therefore instant; the motion in this rice comes from
+ * Hyprland (layer fade-in/out + popin) instead of the bar itself.
+ *
+ * Each group is its own lightly-rounded capsule on a transparent strip, with a
+ * 1px hairline border. Windows themselves are square (modules/theme.lua); the
+ * rounding here is deliberate -- a glass surface reads as broken with hard
+ * corners.
+ *
+ * Vertical centring: every module shares the same `padding: 0 10px` and the
+ * same line box, so glyph ink and label ink land on the same pixel rows. Give
+ * one module a different padding and the icons drift off the text baseline --
+ * which is exactly what the previous revision did.
+ */
+
+@define-color bg      rgba(9, 9, 11, 0.55);    /* zinc-950, translucent */
+@define-color fg      #fafafa;
+@define-color muted   #d4d4d8;
+@define-color dim     #8b8b96;
+@define-color accent  #7dd3fc;
+@define-color warn    #fcd34d;
+@define-color danger  #fca5a5;
+@define-color border  rgba(255, 255, 255, 0.09);
+
 * {
-  font-family: "Monaco Nerd Font";
-  font-size: 14px;
+  font-family: "Inter Variable", "Inter", "Symbols Nerd Font", sans-serif;
+  font-size: 12.5px;
+  font-weight: 500;
+  min-height: 0;
+  border: none;
+  border-radius: 0;
+  margin: 0;
+  padding: 0;
+  /* GTK3 draws a drop shadow under symbolic icons by default; it is invisible
+   * at this size but shifts the icon's bounding box, which breaks centring. */
+  -gtk-icon-shadow: none;
+  text-shadow: none;
 }
 
 #waybar {
-  background: rgba(20, 20, 20, 20);
+  background: transparent;
+  color: @fg;
 }
 
-/* Module Center */
-
-#workspaces {
+/* The three capsules. */
+.modules-left,
+.modules-center,
+.modules-right {
+  background: @bg;
+  border: 1px solid @border;
+  border-radius: 20px;
   margin: 6px 0;
-  color: #eeeeee;
-  background: rgba(50, 50, 50, 80);
-  border-radius: 4px;
+  padding: 0 6px;
+  min-height: 28px;
 }
 
-#tray {
-  margin: 6px 0 6px 6px;
-  padding: 0 10px;
-  color: #eeeeee;
-  background: rgba(50, 50, 50, 80);
-  border-radius: 4px;
+.modules-left  { margin-left: 12px; padding-left: 10px; }
+.modules-right { margin-right: 12px; padding-right: 10px; }
+
+/* Workspaces */
+#workspaces {
+  background: transparent;
+  margin: 0;
+  padding: 0;
 }
 
-/* Module Right */
-
-#backlight {
-  margin: 6px 6px 6px 0;
-  padding: 0 10px;
+#workspaces button {
+  padding: 0 8px;
+  margin: 4px 2px;
+  min-width: 14px;
+  border-radius: 10px;
+  color: @dim;
+  background: transparent;
+  font-weight: 600;
+  font-size: 11.5px;
 }
 
-#pulseaudio {
-  margin: 6px 6px 6px 0;
-  padding: 0 10px;
+#workspaces button.active {
+  color: #09090b;
+  background: @accent;
 }
 
-#network {
-  margin: 6px 6px 6px 0;
+#workspaces button.urgent {
+  color: @danger;
+  background: rgba(252, 165, 165, 0.16);
+}
+
+/* Focused window title, sitting next to the workspace numbers. */
+#window {
+  color: @muted;
+  padding: 0 12px 0 8px;
+}
+
+window#waybar.empty #window {
+  padding: 0;
+  margin: 0;
+}
+
+/* Modules. Identical padding is what keeps icons on the text baseline. */
+#clock,
+#tray,
+#backlight,
+#pulseaudio,
+#network,
+#battery {
   padding: 0 10px;
+  color: @dim;
+  background: transparent;
 }
 
 #clock {
-  margin: 6px 6px 6px 0;
-  padding: 0 10px;
+  color: @fg;
+  font-weight: 600;
+  letter-spacing: 0.2px;
 }
 
-#custom-power {
-  margin: 6px 6px 6px 0;
-  padding: 0 10px;
+#tray { padding: 0 9px; }
+
+#tray > .passive,
+#tray > .active,
+#tray > .needs-attention {
+  margin: 0 2px;
+  padding: 0;
 }
 
-#battery {
-  margin: 6px 6px 6px 0;
-  padding: 0 10px;
+#battery.warning  { color: @warn; }
+#battery.critical { color: @danger; }
+#network.disconnected { color: @danger; }
+
+tooltip {
+  background: @bg;
+  border: 1px solid @border;
+  border-radius: 12px;
+}
+
+tooltip label {
+  color: @fg;
+  padding: 8px;
 }

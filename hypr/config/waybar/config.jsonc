@@ -1,0 +1,141 @@
+// Waybar configuration.
+//
+// A single dark "capsule" per section (left / center / right) on top of a
+// transparent strip, matching the zinc palette in modules/theme.lua.
+// Waybar parses JSON with // comments, so .jsonc is fine.
+//
+// Icons are literal Nerd Font glyphs, not words and not \uXXXX escapes.
+// An earlier revision put plain strings ("low", "wifi") in format-icons, so
+// the bar printed those words instead of drawing a glyph -- that is why the
+// bar looked text-only. Glyphs above the BMP (brightness, U+F05A8) cannot be
+// written as a 4-digit JSON escape either, so literal characters are the one
+// form that works everywhere here.
+//
+// Every glyph below was checked against this machine's "Symbols Nerd Font".
+//
+// Glyphs are wrapped in <span size='130%'>. Material Design icons are drawn on
+// a sparse grid, so at the bar's 12.5px they occupy only ~7x7 pixels of ink and
+// read as specks next to 12.5px text. 130% brings their cap height in line with
+// the labels without enlarging the line box (the bar height is fixed at 42).
+//
+// `height` must be 42: once the modules have padding, Waybar raises its own
+// minimum and silently grows the bar (with a warning) if you ask for less.
+// 34 and 40 both triggered that.
+
+{
+    "layer": "top",
+    "position": "top",
+    "height": 42,
+    "spacing": 6,
+
+    "modules-left": ["hyprland/workspaces", "hyprland/window"],
+    "modules-center": ["clock"],
+    "modules-right": ["tray", "pulseaudio", "network", "backlight", "battery"],
+
+    // Tray icons come from the icon theme. icon-size has to stay close to the
+    // font size or the tray row stops lining up with the text modules.
+    "tray": {
+        "icon-size": 15,
+        "spacing": 10
+    },
+
+    // Workspaces render their number via {name}. The old file mapped 1..9 to
+    // strings and used a bullet for `active`, which made the current workspace
+    // a different shape from every other one and left 10 undefined.
+    "hyprland/workspaces": {
+        "format": "{name}",
+        "on-click": "activate",
+        "all-outputs": true,
+        "format-icons": {
+            "urgent": "{name}",
+            "active": "{name}",
+            "default": "{name}"
+        },
+        // on-scroll calls hyprctl with a Lua expression, NOT "dispatch workspace
+        // e+1". Hyprland 0.57 evaluates the dispatch argument as Lua, so the
+        // old space-separated form is a syntax error and scrolling silently did
+        // nothing. The IIFE mirrors cycle_workspace() in modules/keybinds.lua so
+        // the wheel wraps 10 -> 1 exactly like Alt+[ / Alt+].
+        "on-scroll-up": "hyprctl dispatch '(function() local c=hl.get_active_workspace(); local id=(c and c.id) or 1; if id<1 or id>10 then id=1 end; return hl.dsp.focus({workspace=((id-1+1)%10)+1}) end)()'",
+        "on-scroll-down": "hyprctl dispatch '(function() local c=hl.get_active_workspace(); local id=(c and c.id) or 1; if id<1 or id>10 then id=1 end; return hl.dsp.focus({workspace=((id-1-1)%10)+1}) end)()'"
+    },
+
+    "hyprland/window": {
+        "format": "{title}",
+        "max-length": 44
+    },
+
+    "clock": {
+        "format": "<span size='130%'>󰃭</span>  {:%H:%M}",
+        "format-alt": "{:%a %d %b}",
+        "tooltip-format": "<tt>{calendar}</tt>",
+        "calendar": {
+            "mode": "month",
+            "mode-mon-col": 3,
+            "weeks-pos": "right",
+            "on-scroll": 1,
+            "format": {
+                "months": "<span color='#fafafa'><b>{}</b></span>",
+                "days": "<span color='#8b8b96'>{}</span>",
+                "today": "<span color='#fafafa'><b><u>{}</u></b></span>"
+            }
+        }
+    },
+
+    "backlight": {
+        "device": "intel_backlight",
+        "format": "<span size='130%'>󰖨</span>  {}%",
+        "tooltip": false,
+        "interval": 2,
+        "on-scroll-up": "brightnessctl -q -n2 -e4 set 5%+",
+        "on-scroll-down": "brightnessctl -q -n2 -e4 set 5%-"
+    },
+
+    "pulseaudio": {
+        "format": "{icon}  {volume}%",
+        "format-muted": "<span size='130%'>󰝟</span>  muted",
+        // format-icons is ordered lowest -> highest volume, and waybar picks the
+        // index by volume. The previous array was [muted, high, low], so 100%
+        // selected the last entry and the bar showed the *low* speaker at full
+        // volume. These three are the real speaker glyphs; U+F0581/F0582 look
+        // like more volume steps but render as unrelated shapes.
+        "format-icons": {
+            "default": [
+                "<span size='130%'>󰕿</span>",
+                "<span size='130%'>󰕾</span>",
+                "<span size='130%'>󰖀</span>"
+            ]
+        },
+        "tooltip": false,
+        "scroll-step": 5,
+        "on-click": "wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle",
+        "on-click-right": "pavucontrol"
+    },
+
+    "network": {
+        "format-wifi": "<span size='130%'>󰖩</span>  {signalStrength}%",
+        "format-ethernet": "<span size='130%'>󰈀</span>  wired",
+        "format-disconnected": "<span size='130%'>󰅚</span>  offline",
+        "tooltip-format": "{essid} {signalStrength}%",
+        "on-click": "nm-connection-editor"
+    },
+
+    "battery": {
+        "interval": 30,
+        "states": {
+            "warning": 30,
+            "critical": 15
+        },
+        "format": "{icon}  {capacity}%",
+        "format-icons": [
+            "<span size='130%'>󰂎</span>",
+            "<span size='130%'>󰁻</span>",
+            "<span size='130%'>󰁽</span>",
+            "<span size='130%'>󰁿</span>",
+            "<span size='130%'>󰂁</span>"
+        ],
+        "format-charging": "<span size='130%'>󰂄</span>  {capacity}%",
+        "format-plugged": "<span size='130%'>󰂄</span>  {capacity}%",
+        "tooltip-format": "{timeTo}"
+    }
+}

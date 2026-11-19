@@ -1,40 +1,54 @@
-# GLOBAL CONFIGURATION OPTIONS
+# mako — notification daemon, zinc card.
+#
+# Sized as a card, not a banner: the old 800x200 setting covered a third of a
+# 1080p screen for a single line of text.
+#
+# Windows are square (modules/theme.lua) but this is a floating glass surface,
+# so it keeps its rounding -- same reasoning as the bar capsules and fuzzel.
+
+font=Inter 11
+width=380
+height=120
+padding=14
+margin=10
+border-size=1
+border-radius=12
+
+background-color=#18181be6
+text-color=#f4f4f5
+border-color=#ffffff1a
+progress-color=over #27272a80
+icon-border-color=#ffffff14
+icon-border-radius=6
+
+anchor=top-right
+layer=overlay
+max-visible=4
+default-timeout=4000
+ignore-timeout=0
 max-history=100
 sort=-time
 
-# BINDING OPTIONS
+markup=1
+actions=1
+history=1
+icon-path=/usr/share/icons/hicolor
+icons=1
+icon-location=left
+text-alignment=left
+
 on-button-left=dismiss
 on-button-middle=none
 on-button-right=dismiss-all
 on-touch=dismiss
 
-# STYLE OPTIONS
-font=Monaco Nerd Font 12
-width=800
-height=200
-padding=8
-border-size=2
-icon-location=left
-markup=1
-actions=1
-history=1
-text-alignment=left
-default-timeout=2000
-ignore-timeout=0
-max-visible=5
-layer=top
-anchor=top-center
-
-background-color=#141414
-border-color=#d9e0ee
-text-color=#d9e0ee
-
 [urgency=low]
-default-timeout=2000
+default-timeout=2500
 
 [urgency=normal]
-default-timeout=5000
+default-timeout=4000
 
 [urgency=high]
-text-color=#f38ba8
+text-color=#fca5a5
+border-color=#fca5a566
 default-timeout=0
